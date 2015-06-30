@@ -1,0 +1,50 @@
+﻿<div class="jumbotron">
+
+    <form role="form">
+        <div class="form-group">
+            <label for="txtemail">UserName</label>
+            <input type="text" class="form-control" id="txtemail"
+                   placeholder="Enter UserName">
+        </div>
+        <div class="form-group">
+            <label for="txtpassword">Password</label>
+            <input type="password" class="form-control" id="txtpassword"
+                   placeholder=" Password">
+        </div>
+        <div class="form-group">
+            <label for="txtconfirmpassword">Confirm Password</label>
+            <input type="password" class="form-control" id="txtconfirmpassword"
+                   placeholder="Confirm Password">
+        </div>
+        <button id="submit" type="button" class="btn btn-default">Submit</button>
+
+        <script>
+            //Register User through WebApi
+            $(document).ready(function () {
+                $("#submit").click(function () {
+                    var UserName = $("#txtemail").val();
+                    var Password = $("#txtpassword").val();
+                    var ConfirmPassword = $("#txtconfirmpassword").val();
+                    alert("1");
+                    var sample = {
+                        UserName: UserName, Password: Password, ConfirmPassword: ConfirmPassword
+                    };
+                    alert(2);
+                    $.ajax({
+                        url: "/api/Account/Register",
+                        type: "Post",
+                        data: JSON.stringify(sample),
+                        //data:sample,
+                        contentType: 'application/json; charset=utf-8',
+                        success: function (data)
+                        { alert(JSON.stringify(data)); },
+                        error: function (msg)
+                        { alert(JSOb.stringify(msg)); }
+                    });
+                });
+            });
+        </script>
+    </form>
+
+
+</div>

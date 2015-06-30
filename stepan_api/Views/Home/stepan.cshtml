@@ -1,0 +1,51 @@
+﻿
+<div>
+    <script>
+
+      
+        //Generate AntiForgeryToken
+            @*@functions{
+        public string TokenHeaderValue()
+        {
+            string cookieToken, formToken;
+            AntiForgery.GetTokens(null, out cookieToken, out formToken);
+            return cookieToken + ":" + formToken;
+        }
+    }*@
+        //Testing stepan Api BRAND
+      @*  $(document).ready(function () {
+            var Brand = 'STEPFAC';
+            var a = localStorage.getItem('Authtoken');
+            $.ajax({
+                url: "/api/stepan/GetBrandName?Brand=" + Brand,
+                type: "Get",
+                headers: {
+                    "Authorization": "Bearer " + a,
+                    'RequestVerificationToken': '@TokenHeaderValue()'
+                },
+                success: function (data) {
+                   alert(JSON.stringify(data))
+                },
+                error: function (msg) { alert(msg); }
+            });
+        });*@
+
+        $(document).ready(function () {
+
+            var a = localStorage.getItem('Authtoken');
+            $.ajax({
+                url: "/api/stepan/GetAllCategories",
+                type: "Get",
+                headers: {
+                    "Authorization": "Bearer " + a,
+                    
+                },
+                success: function (data) {
+                    alert(JSON.stringify(data))
+                },
+                error: function (msg) { alert(msg); }
+            });
+         });
+
+    </script>
+</div>
